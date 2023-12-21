@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+   
+    <style> 
+
+        h1{
+            text-align: center;
+            font-family: Arial, sans-serif;
+            font-size:  70px;
+            color: #562c4d;
+            margin-bottom: 60px;
+            margin-top: 70px;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+        }
+
+        .result-container {
+            text-align: center;
+            /* padding: 50px 50px 0px 50px; */
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            margin: auto;
+        }
+
+        .result-table{
+            border-collapse: collapse;
+         
+            width: 100%;
+            text-align: center;
+            align-items: center;
+            /* padding:100px */
+
+
+        }
+
+        /* Added code to make the table bigger */
+        .result-table {
+            font-size: 25px;
+            height: 400px;
+            /* padding-right: 55px; */
+            align-items: center;
+            border-collapse: separate;
+            border-spacing: 10px 20px;
+            border-radius: 20px; /* Adjust the value for the roundness of edges */
+            overflow: hidden; 
+        }
+        tr{
+            padding: 20px;
+        }
+        
+      
+        /* Added code to give each row a different background color */
+        .row1 {
+        background-color: #e6f2ff;
+        }
+
+        .row2 {
+            background-color: #f2e6ff;
+        }
+
+        .row3 {
+            background-color: #e6ffe6;
+        }
+
+        .row4 {
+            background-color: #ffe6e6;
+            
+        }
+
+        
+
+    </style>
+</head>
+<body>
+    <div>
+
+    <div class="result-title">
+        <h1>Live Results of Voting</h1>
+    </div>
+
+    <div class="result-container" style="width: 600px; height: 400px;">
+      
+        <table class="result-table" >
+            <tr class="row1">
+                <th>Candidate</th>
+                <th>Vote</th>
+            </tr>
+            <tr class="row2">
+                <td>John</td>
+                <td>10</td>
+            </tr>
+            <tr class="row3">
+                <td>Mike</td>
+                <td>5</td>
+            </tr>
+            <tr class="row4">
+                <td>Tom</td>
+                <td>3</td>
+            </tr>
+        </table>
+        
+    </div>
+
+    </div>
+           
+    </body>
+</html>
+
