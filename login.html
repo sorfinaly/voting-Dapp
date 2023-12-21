@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Voting App</title>
+  <style>
+    /* Some basic styling for layout */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .login-button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      background-color: #3498db;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      text-decoration: none;
+    }
+    .login-button:hover {
+      background-color: #2980b9;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>LOG IN</h1>
+
+    <!-- Login button -->
+   
+        <a href="../result.html" class="login-button">Log in with Metamask</a>
+        
+
+      
+    </body>
+
+    <script>
+      // open a new window when i click on the link in the same Tab
+      function openWindow(url) {
+        window.open(url, '_self');
+      }
+
+      document.querySelector('.login-button').addEventListener('click', function() {
+        openWindow('/result.html');
+      });
+ 
+      //question: what does querySelector do?
+      //answer: querySelector() returns the first Element within the document that matches the specified selector, or group of selectors. If no matches are found, null is returned.
+
+       //question: what does addEventListener do?
+      //answer: The addEventListener() method attaches an event handler to the specified element.
+
+      //question: what does ('.login-button') do?
+      //answer: it is the selector. It selects the element with the class "login-button"
+
+      
+
+    </script>
+  
+    <!-- </html>
+    <a href="../result.html" onclick="javascript:openWindow(this.href); return false;" class="login-button">Log in with Metamask</a>
+     -->
+
+  </div>
+</body>
+
+</html>
+
+
