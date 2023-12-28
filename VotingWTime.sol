@@ -9,8 +9,8 @@ contract VotingSC {
     }
 
     mapping(address => bool) public voters;
-    mapping(uint => Candidate) public candidates;
-    Candidate[] public candidateArray;
+    mapping(uint => Candidate) private candidates;
+    Candidate[] private  candidateArray;
     uint public candidatesCount = 0;
 
     event votedEvent(uint indexed _candidateId);
@@ -46,9 +46,16 @@ contract VotingSC {
         emit votedEvent(_candidateId);
     }
 
-    function getCandidates() public view returns (Candidate[] memory) {
-        return candidateArray;
+    function getCandidate() public view returns (Candidate[] memory) {
+        Candidate[] memory allCandidates = new Candidate[](candidatesCount);
+
+        for (uint i = 1; i <= candidatesCount; i++) {
+            allCandidates[i - 1] = candidates[i];
+        }
+
+        return allCandidates;
     }
+
 
     function getRemainingTime() public view onlyBeforeVotingEnd returns (uint) {
         uint remainingTime = votingEndTime - block.timestamp;
