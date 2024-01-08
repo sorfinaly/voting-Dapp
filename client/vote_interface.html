@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vote Casting Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        form {
+            max-width: 600px;
+            margin: 20px auto; /* Increased margin */
+            padding: 40px; /* Increased padding */
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 18px; /* Increased font size */
+        }
+        label {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px; /* Increased margin */
+        }
+        input[type="radio"], button {
+            margin-right: 20px; /* Increased margin */
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<form id="voteForm">
+    <p>Please select a candidate:</p>
+    <label>
+        <input type="radio" name="selectedCandidate" value="candidate1"> Candidate 1
+    </label>
+    <label>
+        <input type="radio" name="selectedCandidate" value="candidate2"> Candidate 2
+    </label>
+    <label>
+        <input type="radio" name="selectedCandidate" value="candidate3"> Candidate 3
+    </label>
+    <!-- Add more options as needed -->
+
+    <button type="button" onclick="castVote()">Cast Vote</button>
+</form>
+
+<script>
+    async function castVote() {
+        // Get the user's Ethereum address and selected candidate from the form
+        const voterAddress = await getVoterAddress(); // You need to implement this function to fetch the user's Ethereum address
+        const selectedCandidate = getSelectedCandidate();
+
+        // Use Web3.js or a similar library to interact with the smart contract
+        // Example: Call the castVote function on the smart contract for the selected candidate
+        // const contract = new web3.eth.Contract(abi, contractAddress);
+        // await contract.methods.castVote(selectedCandidate).send({ from: voterAddress });
+
+        // Notify the user that the vote has been cast (this is a placeholder)
+        alert('Vote cast successfully!');
+    }
+
+    function getSelectedCandidate() {
+        const selectedRadio = document.querySelector('input[type="radio"]:checked');
+        return selectedRadio ? selectedRadio.value : null;
+    }
+</script>
+
+</body>
+</html>
