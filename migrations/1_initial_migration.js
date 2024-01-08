@@ -1,3 +1,5 @@
-module.exports = function(_deployer) {
-  // Use deployer to state migration tasks.
+const Migrations = artifacts.require("Migrations");
+
+module.exports = function(deployer) {
+  deployer.deploy(Migrations);
 };
