@@ -15,20 +15,27 @@
             color: #562c4d;
             margin: 40px;
         }
+        p{
+            font: 25px sans-serif;
+        }
 
        
         .acontainer {
             padding: 20px;
             border-radius: 8px;
+            border: 2px solid #ddd;
+            
         }
 
         #voteForm {
             text-align: center;
+            
         }
 
         label {
             display: block;
             margin-bottom: 10px;
+            font-size: 20px;
         }
 
         button {
@@ -39,6 +46,8 @@
             border-radius: 4px;
             cursor: pointer;
             transition: background-color 0.3s ease;
+            font-size: 20px;
+
         }
 
         button:hover {
@@ -63,6 +72,7 @@
             padding: 40px;
             width: 50%;
             height: 100%;
+            
         }
 
         .result-table{
@@ -179,7 +189,6 @@
         }
 
      
-
         .formadd {
             padding: 1px;
             display: flex;
@@ -201,7 +210,7 @@
         <h1>Cast Vote</h1>
         <form id="voteForm">
             <p>Please select a candidate:</p>
-            <div id="candidateList"></div>
+            <div id="candidateList" ></div>
             <button type="button" id="castVoteButton">Cast Vote</button>
         </form>
         <div id="invalid" >  </div>
@@ -213,8 +222,8 @@
     <div class="add-container">
         <div class="formadd">
             <form id="addCandidateForm">
-                <label id="textcan" for="candidateName">Candidate Name</label>
-                <input type="text" id="candidateName" name="candidateName"><br><br>
+                <label id="textcan" for="candidateName" style="font-size: 30px;">Candidate Name</label>
+                <input type="text" id="candidateName" name="candidateName" style="width: 300px; height: 40px; font-size: 16px; text-align: center;" placeholder="Enter candidate's name"><br><br>
                 <div id="butadd"><button type="submit" id="addCandidateButton">Add Candidate</button><br><br></div>
                 
             </form>
@@ -235,7 +244,7 @@
         <div id="result"></div>
     </div>
 
-   <div class="result-title" style="padding-bottom:300px; padding-top: 50px;">
+   <div class="result-title" style="padding-bottom:300px; padding-top: 50px; border: 2px solid #ddd;">
      <h1>Live Results of Voting</h1>
         <div class="result-container"  >
   

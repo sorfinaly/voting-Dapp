@@ -292,7 +292,7 @@ async function showResult() {
     const winner = await displayWinner();
 
     if (winner) {
-        resultDiv.innerHTML = `The Winner is ${winner.name} with ${winner.voteCount} votes`;
+        resultDiv.innerHTML = `🎉 Congratulations! 🎉 <br> The Winner is ${winner.name} with ${winner.voteCount} votes`;
     } else {
         resultDiv.innerHTML = 'No winner determined';
     }
