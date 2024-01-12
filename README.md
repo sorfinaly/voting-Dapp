@@ -1,7 +1,7 @@
 # voting-Dapp
 
 1. git clone https://github.com/sorfinaly/voting-Dapp.git 
-2. change from: (account) to be the admin address in truffle-config.js
+2. change 'account' from: (account) to be the admin address in truffle-config.js
 3. change validVoters.json in client directory acording the from account in ganache that will be connected to metamask
 4. run "truffle compile" and then "truffle migrate" in the parents directory
 5. Ensure that in VotingSC.json under directory build\contract, has this line 
