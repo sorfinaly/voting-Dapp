@@ -11,5 +11,5 @@
     }
   },
 6. in the client directory (cd client), run "npm init -f", followed by "npm install --save-dev parcel", then "npm install --save web3 bootstrap".
-7. change browser: location in client\node_modules\web3\package.json to location of web3.min.js under client\dist\web3.min.js
+7. change browser: (path of web.min.js) in client\node_modules\web3\package.json to path to web3.min.js under client\dist\web3.min.js
 8. run "npm run start" in the client directory
