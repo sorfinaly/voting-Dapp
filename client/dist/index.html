@@ -9,17 +9,14 @@
     <style>h1 {
   text-align: center;
   color: #562c4d;
-  margin-top: 70px;
-  margin-bottom: 60px;
+  margin: 40px;
   font-family: Arial, sans-serif;
-  font-size: 20px;
+  font-size: 30px;
 }
 
 .acontainer {
-  background-color: #fff;
   border-radius: 8px;
   padding: 20px;
-  box-shadow: 0 0 10px #0000001a;
 }
 
 #voteForm {
@@ -46,6 +43,7 @@ button:hover {
 }
 
 body {
+  background-color: #f0f8ff;
   justify-content: center;
   align-items: center;
   height: 100vh;
@@ -131,11 +129,42 @@ body {
   display: flex;
 }
 
-#textcan, #butadd {
+#textcan {
   justify-content: center;
   align-items: center;
   font-size: 20px;
   display: flex;
+}
+
+#butadd, #showresult {
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  font-size: 20px;
+  display: flex;
+}
+
+#center {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+#result {
+  color: #fff;
+  text-align: center;
+  background-color: #3498db;
+  border-radius: 10px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 40%;
+  margin: 30px;
+  padding: 20px;
+  font-size: 30px;
+  display: flex;
+  box-shadow: 0 0 10px #0003;
 }
 
 .formadd {
@@ -156,6 +185,7 @@ body {
  <body>
 
     <div class="acontainer">
+        <h1>Cast Vote</h1>
         <form id="voteForm">
             <p>Please select a candidate:</p>
             <div id="candidateList"></div>
@@ -184,11 +214,13 @@ body {
     
     <div id="butadd"><button type="submit" id="endvote">End Voting Session</button><br><br></div>
 
-    
-    <div id="showresult">
-        <button id="resultButton">Show Result</button>
+    <div id="center">
+        <div id="showresult">
+            <button id="resultButton">Show Result</button>
+            
+        </div>
+        <div id="result"></div>
     </div>
-    <div id="result"></div>
 
    <div class="result-title" style="padding-top: 50px; padding-bottom: 300px">
      <h1>Live Results of Voting</h1>

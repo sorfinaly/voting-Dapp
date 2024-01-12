@@ -11,16 +11,15 @@
         h1{
             text-align: center;
             font-family: Arial, sans-serif;
-            font-size:  20px;
+            font-size:  30px;
             color: #562c4d;
-            margin-bottom: 60px;
-            margin-top: 70px;
+            margin: 40px;
         }
+
+       
         .acontainer {
-            background-color: #fff;
             padding: 20px;
             border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
         #voteForm {
@@ -53,6 +52,7 @@
             align-items: center;
             height: 100vh;
             font-family: Arial, sans-serif;
+            background-color: aliceblue;
         }
         .result-container {
             text-align: center;
@@ -146,21 +146,39 @@
             align-items: center;
         }
 
-        #butadd, #showresult, #center {
+        #butadd, #showresult {
             font-size: 20px;
             display: flex;
             justify-content: center;
             align-items: center;
             margin: 10px;
         }
+        #center{
+            justify-content: center;
+            align-items: center;
+            
+            display: flex;
+            flex-direction: column;
+        }
 
-        #result{
+        #result {
             font-size: 30px;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             margin: 30px;
+            padding: 20px;
+            background-color: #3498db; /* Background color */
+            color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Box shadow */
+            text-align: center;
+            width: 40%;
+            
         }
+
+     
 
         .formadd {
             padding: 1px;
@@ -180,6 +198,7 @@
  <body>
 
     <div class="acontainer">
+        <h1>Cast Vote</h1>
         <form id="voteForm">
             <p>Please select a candidate:</p>
             <div id="candidateList"></div>
@@ -208,11 +227,13 @@
     
     <div id="butadd"><button type="submit" id="endvote">End Voting Session</button><br><br></div>
 
-    
-    <div id="showresult">
-        <button id="resultButton">Show Result</button>
+    <div id="center">
+        <div id="showresult">
+            <button id="resultButton">Show Result</button>
+            
+        </div>
+        <div id="result"></div>
     </div>
-    <div id="result"></div>
 
    <div class="result-title" style="padding-bottom:300px; padding-top: 50px;">
      <h1>Live Results of Voting</h1>
