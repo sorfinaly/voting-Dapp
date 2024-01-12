@@ -55,14 +55,18 @@ function isValidVoter(account) {
 
 }
 
-function getVoterName(account) {
+async function getVoterName(account) {
     const validVoters = loadValidVoters().validVoters;
     
     const voter = validVoters.find(voter => voter.accountNumber === account);
+    const adminAddress = await contract.methods.admin().call();
     
     if (voter) {
         console.log(`Valid voter found. Name: ${voter.name}`);
         accountElement.innerHTML = `Welcome, ${voter.name}!`;
+    } else if (account === adminAddress) {
+        console.log('Admin logged in');
+        accountElement.innerHTML = 'Welcome, Admin!';
     } else {
         console.log('Not a valid voter');
         accountElement.innerHTML = 'NOT A VALID VOTER';
@@ -209,6 +213,7 @@ async function endVotingSession() {
         if (curr === adminAddress) {
             await contract.methods.endVoting().send({ from: curr, gas: 500000 });
             console.log('Voting session ended by admin');
+            accountElement.innerHTML = 'Welcome, Admin!';
             // Optionally, you can update the UI or perform other actions after ending the voting session
         } else {
             console.log('Only the admin can end the voting session');
@@ -264,6 +269,34 @@ async function showRemainingTime() {
 
 // Add an event listener to the "Show Remaining Time" button
 document.getElementById('showRemainingTime').addEventListener('click', showRemainingTime);
+
+
+
+// Add an event listener to the "Show Result" button
+document.getElementById('resultButton').addEventListener('click', showResult);
+
+async function displayWinner() {
+    const votingEnded = await contract.methods.votingEnded().call();
+
+    if (!votingEnded) {
+        alert("Voting has not ended");
+        return;
+    }
+
+    const winner = await contract.methods.displayWinner().call();
+    return winner;
+}
+
+async function showResult() {
+    const resultDiv = document.getElementById('result');
+    const winner = await displayWinner();
+
+    if (winner) {
+        resultDiv.innerHTML = `Winner: ${winner.name} with ${winner.voteCount} votes`;
+    } else {
+        resultDiv.innerHTML = 'No winner determined';
+    }
+}
 
 
 const main = async () => {
