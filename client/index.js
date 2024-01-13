@@ -1,12 +1,5 @@
 import Web3 from 'web3';
 const configuration = require("../build/contracts/VotingSC.json");
-
-const createElementFromString = (string) => {
-    const div = document.createElement('div');
-    div.innerHTML = string.trim();
-    return div.firstChild;
-}
-
 const CONTRACT_ADDRESS = configuration.networks['5777'].address;
 const CONTRACT_ABI = configuration.abi;
 
@@ -29,7 +22,7 @@ async function updateCandidateList() {
         candidates.forEach((candidate, index) => {
             const label = document.createElement('label');
             label.innerHTML = `
-                <input type="radio" name="selectedCandidate" value="${index + 1}"> ${candidate.name}
+                <div style="font-size: 25px; font-weight: bold; margin:14px;"><input type="radio" name="selectedCandidate" value="${index + 1}"> ${candidate.name}</div
             `;
             candidateListContainer.appendChild(label);
         });
@@ -49,10 +42,8 @@ function loadValidVoters() {
 
 // Function to check if the account is a valid voter
 function isValidVoter(account) {
-
     const validVoters = loadValidVoters().validVoters;
     return validVoters.some(voter => voter.accountNumber === account);
-
 }
 
 async function getVoterName(account) {
@@ -81,6 +72,7 @@ async function castVote(account, candidateId) {
         document.getElementById('invalid').innerText = 'You are not a valid voter';
     }
     else{
+        checkVotingStatus();
     try {
         const receipt = await contract.methods.vote(candidateId)
             .send({ from: account });
@@ -97,6 +89,7 @@ async function castVote(account, candidateId) {
 document.getElementById('castVoteButton').addEventListener('click', async () => {
     const selectedCandidate = document.querySelector('input[name="selectedCandidate"]:checked').value;
     console.log('Selected candidate:', selectedCandidate);
+
     const candidateId = parseInt(selectedCandidate);
     
     try {
@@ -105,10 +98,27 @@ document.getElementById('castVoteButton').addEventListener('click', async () => 
         // Update table after successful vote
         await refreshVotingResultsTable();
     } catch (error) {
-        // Handle error if vote casting fails
-        // Optionally display an error message to the user
     }
 });
+
+// Define an async function to use await
+async function checkVotingStatus() {
+    try {
+        const voterHasVoted = await contract.methods.hasVoted(curr).call();
+        console.log('Voter has voted:', voterHasVoted);
+
+
+        if (voterHasVoted) {
+            console.log('You have already voted.');
+            document.getElementById('invalid').innerText = 'Error! You has casted a vote';
+        } else {
+            console.log('You have not voted yet.');
+        }
+    } catch (error) {
+        console.error('Error checking if voter has voted:', error);
+        // Handle the error if needed
+    }
+}
 
 // Function to refresh/update the voting results table
 async function refreshVotingResultsTable() {
@@ -132,7 +142,6 @@ async function refreshVotingResultsTable() {
         console.error('Error refreshing voting results:', error);
     }
 }
-
 
 document.addEventListener('DOMContentLoaded', function () {
 
@@ -158,9 +167,8 @@ document.addEventListener('DOMContentLoaded', function () {
             
                 if (curr !== adminAddress) {
                     document.getElementById('warningMessage').innerText = '';
-                    console.log('BYou are not the admin');
-                    document.getElementById('warningMessage').innerText = 'You are not the admin'; //This line is not executed CHECKK
-                    console.log('You are not the admin');
+                    document.getElementById('warningMessage').innerText = 'You are not Admin'; //This line is not executed CHECKK
+                    return;
                 } else{
                     console.log('You are the admin');
                     const receipt = await contract.methods.addCandidate(candidateName).send({ from: adminAddress, gas: 500000 }); 
@@ -172,12 +180,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
                     window.location.href = 'http://localhost:1234';
                 }
-
                 // Clear error message
                 document.getElementById('warningMessage').innerText = '';
-
-                // Optionally, notify the user about a successful candidate addition
-                // Update the table or perform any other action if needed after adding a candidate
             } catch (error) {
                 console.error('Error adding candidate:', error);
                 // Display error message
@@ -191,11 +195,8 @@ document.addEventListener('DOMContentLoaded', function () {
             // Call the refreshVotingResultsTable function asynchronously
             try {
                 await refreshVotingResultsTable();
-                // Optionally, you can add additional logic after refreshing the table
             } catch (error) {
                 console.error('Error refreshing voting results table:', error);
-                // Handle the error if the table refresh fails
-                // Optionally, display an error message to the user
             }
         });
 
@@ -214,9 +215,13 @@ async function endVotingSession() {
             await contract.methods.endVoting().send({ from: curr, gas: 500000 });
             console.log('Voting session ended by admin');
             accountElement.innerHTML = 'Welcome, Admin!';
+            alert("Admin has ended the voting session");
+            return;
             // Optionally, you can update the UI or perform other actions after ending the voting session
         } else {
             console.log('Only the admin can end the voting session');
+            alert("Only Admin can end the voting session");
+            return;
             // Optionally, you can display a message to the user that only the admin can end the voting session
         }
     } catch (error) {
@@ -259,7 +264,6 @@ async function showRemainingTime() {
             alert('Voting time has ended!');
             document.getElementById('castVoteButton').disabled = true;
         } else {
-            // Display the remaining time to the user (you can customize this based on your UI)
             alert(`Remaining Time: ${remainingTime.toString()} seconds`);
         }
     } catch (error) {
@@ -270,8 +274,6 @@ async function showRemainingTime() {
 // Add an event listener to the "Show Remaining Time" button
 document.getElementById('showRemainingTime').addEventListener('click', showRemainingTime);
 
-
-
 // Add an event listener to the "Show Result" button
 document.getElementById('resultButton').addEventListener('click', showResult);
 
@@ -279,7 +281,7 @@ async function displayWinner() {
     const votingEnded = await contract.methods.votingEnded().call();
 
     if (!votingEnded) {
-        alert("Voting has not ended");
+        // alert("Voting has not ended");
         return;
     }
 
@@ -294,7 +296,7 @@ async function showResult() {
     if (winner) {
         resultDiv.innerHTML = `🎉 Congratulations! 🎉 <br> The Winner is ${winner.name} with ${winner.voteCount} votes`;
     } else {
-        resultDiv.innerHTML = 'No winner determined';
+        resultDiv.innerHTML = 'Voting has not ended yet';
     }
 }
 

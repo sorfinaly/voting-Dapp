@@ -6,12 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"> 
     <title>Voting Dapp</title>
     <link rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
     <style>h1 {
   text-align: center;
   color: #562c4d;
-  margin: 40px;
+  margin: 20px;
   font-family: Arial, sans-serif;
   font-size: 30px;
+  font-weight: bold;
 }
 
 p {
@@ -21,11 +24,22 @@ p {
 .acontainer {
   border: 2px solid #ddd;
   border-radius: 8px;
-  padding: 20px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 30px;
+  padding: 10px;
+  display: flex;
+}
+
+.admin {
+  border: 2px solid #ddd;
+  margin: 30px;
 }
 
 #voteForm {
   text-align: center;
+  font-family: Arial, sans-serif;
 }
 
 label {
@@ -37,11 +51,11 @@ label {
 button {
   color: #fff;
   cursor: pointer;
-  background-color: #007bff;
+  background-color: #326caa;
   border: none;
   border-radius: 4px;
-  padding: 10px 20px;
-  font-size: 20px;
+  padding: 8px 20px;
+  font-size: 18px;
   transition: background-color .3s;
 }
 
@@ -53,8 +67,8 @@ body {
   background-color: #f0f8ff;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  margin: 0;
+  margin: 20px;
+  padding-bottom: 20px;
   font-family: Arial, sans-serif;
 }
 
@@ -71,14 +85,32 @@ body {
 
 .result-table {
   border-collapse: collapse;
-  text-align: center;
-  border-collapse: separate;
-  border-spacing: 10px 20px;
-  border-radius: 10px;
-  align-items: center;
   width: 100%;
+  margin-top: 20px;
+}
+
+.result-table th, .result-table td {
+  text-align: center;
+  border: 1px solid #ddd;
+  padding: 12px;
   font-size: 20px;
-  overflow: hidden;
+}
+
+.result-table th {
+  color: #fff;
+  background-color: #0d2f79;
+}
+
+.result-table tbody tr:nth-child(2n) {
+  background-color: #f9f9f9;
+}
+
+.result-table tbody tr:hover {
+  background-color: #9ba5d8;
+}
+
+.result-table th:nth-child(2), .result-table td:nth-child(2) {
+  width: 40%;
 }
 
 .topnav {
@@ -92,19 +124,19 @@ body {
   float: left;
   color: #f2f2f2;
   text-align: center;
-  padding: 14px 16px;
-  font-size: 17px;
+  padding: 14px 40px;
+  font-size: 23px;
   text-decoration: none;
 }
 
 .topnav a:hover {
   color: #000;
-  background-color: #ddd;
+  background-color: #1e4db2;
 }
 
 .topnav a.active {
   color: #fff;
-  background-color: #04aa6d;
+  background-color: #133d99;
 }
 
 #account {
@@ -190,49 +222,10 @@ body {
  </head>
  
  <body>
-
-    <div class="acontainer">
-        <h1>Cast Vote</h1>
-        <form id="voteForm">
-            <p>Please select a candidate:</p>
-            <div id="candidateList"></div>
-            <button type="button" id="castVoteButton">Cast Vote</button>
-        </form>
-        <div id="invalid">  </div>
-    </div>
-
-    <h1>Add Candidate</h1>
-    
-
-    <div class="add-container">
-        <div class="formadd">
-            <form id="addCandidateForm">
-                <label id="textcan" for="candidateName" style="font-size: 30px">Candidate Name</label>
-                <input type="text" id="candidateName" name="candidateName" style="text-align: center; width: 300px; height: 40px; font-size: 16px" placeholder="Enter candidate's name"><br><br>
-                <div id="butadd"><button type="submit" id="addCandidateButton">Add Candidate</button><br><br></div>
-                
-            </form>
-        </div><br><div id="warningMessage">  </div>
-    </div>
-
-    <div id="butadd">
-        <button type="button" id="showRemainingTime">Show Remaining Time</button><br><br>
-    </div>
-    
-    <div id="butadd"><button type="submit" id="endvote">End Voting Session</button><br><br></div>
-
-    <div id="center">
-        <div id="showresult">
-            <button id="resultButton">Show Result</button>
-            
-        </div>
-        <div id="result"></div>
-    </div>
-
-   <div class="result-title" style="border: 2px solid #ddd; padding-top: 50px; padding-bottom: 300px">
-     <h1>Live Results of Voting</h1>
-        <div class="result-container">
-  
+    <div class="result-title" style="border: 2px solid #ddd; margin: 30px; padding: 30px">
+        <h1>Live Results of Voting</h1>
+           <div class="result-container">
+     
             <table id="votingResults" class="result-table">
                 <thead>
                     <tr>
@@ -245,8 +238,52 @@ body {
                     <!-- Table body will be populated dynamically -->
                 </tbody>
             </table>
+            
+           </div>
+      </div>
+
+    <div class="acontainer">
+        <h1>Cast Vote</h1>
+        <form id="voteForm">
+            <p>Please select a candidate:</p>
+            <div id="candidateList" style="width: 100%"></div>
+            <button type="button" id="castVoteButton">Cast Vote</button>
+        </form>
+        <div id="invalid">  </div>
+        <div id="butadd">
+            <button type="button" id="showRemainingTime">Show Remaining Time</button><br><br>
         </div>
-   </div>
+    </div>
+
+    
+    <div class="admin">
+        <h1>Add Candidate</h1>
+
+        <div class="add-container">
+            <div class="formadd">
+                <form id="addCandidateForm">
+                    <label id="textcan" for="candidateName" style="font-size: 20px">Candidate Name</label>
+                    <input type="text" id="candidateName" name="candidateName" style="text-align: center; width: 300px; height: 40px; font-size: 16px" placeholder="Enter candidate's name"><br><br>
+                    <div id="butadd"><button type="submit" id="addCandidateButton">Add Candidate</button><br><br></div>
+                </form></div><br><div id="warningMessage">  </div>
+                
+            
+        </div>
+
+        
+        <div id="butadd"><button type="submit" id="endvote">End Voting Session</button><br><br></div>
+
+        <div id="center">
+            <div id="showresult">
+                <button id="resultButton">Show Result</button>
+                
+            </div>
+            <div id="result"></div>
+        </div>
+
+    </div>
+
+
    
    <script src="/index.3d214d75.js" defer=""></script>  
    </body>

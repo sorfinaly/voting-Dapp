@@ -42,7 +42,7 @@ contract VotingSC {
     }
 
     function vote(uint _candidateId) public onlyBeforeVotingEnd {
-        //require(!voters[msg.sender], "You have already voted"); //checks whether the address of the caller (msg.sender) has already voted
+        require(!voters[msg.sender], "You have already voted"); //checks whether the address of the caller (msg.sender) has already voted
         require(_candidateId > 0 && _candidateId <= candidatesCount, "Invalid candidate ID"); //user needs to select more than 0 and less than avaible candidate's count
         voters[msg.sender] = true; //Marks msg.sender as having voted by setting the corresponding value in the voters mapping to true
         candidates[_candidateId].voteCount++;
@@ -87,7 +87,7 @@ contract VotingSC {
         return winner;
     }
 
-    function _hasVoted(address _voter) internal view returns (bool) {
+    function hasVoted(address _voter) public view returns (bool) {
         return voters[_voter];
     }
 
