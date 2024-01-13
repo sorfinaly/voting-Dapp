@@ -1,15 +1,62 @@
-# voting-Dapp
+<h3>Setting up Voting Dapp</h3>
 
-1. git clone https://github.com/sorfinaly/voting-Dapp.git 
-2. change 'account' from: (account) to be the admin address in truffle-config.js
-3. change validVoters.json in client directory acording the from account in ganache that will be connected to metamask
-4. run "truffle compile" and then "truffle migrate" in the parents directory
-5. Ensure that in VotingSC.json under directory build\contract, has this line 
-   "networks": {
-    "5777": { 
+<p><strong>Clone Repository</strong></p>
+
+```bash
+git clone https://github.com/sorfinaly/voting-Dapp.git
+
+```
+<p><strong>Configure Truffle</strong></p>
+<ul>
+  <li>Open <code>truffle-config.js</code> and change the 'account' to the admin address.</li>
+</ul>
+<p><strong>Update validVoters.json</strong></p>
+<ul>
+  <li>Update <code>validVoters.json</code> in the <code>client</code> directory with the account from Ganache connected to MetaMask.</li>
+</ul>
+<p><strong>Compile and Migrate Contracts</strong></p>
+bash
+Copy code
+cd voting-Dapp
+truffle compile
+truffle migrate
+<p><strong>Verify VotingSC.json</strong></p>
+<ul>
+  <li>Ensure that <code>VotingSC.json</code> under <code>build\contract</code> contains the following:</li>
+  <pre>
+  "networks": {
+    "5777": {
       "address": ""
     }
-  },
-6. in the client directory (cd client), run "npm init -f", followed by "npm install --save-dev parcel", then "npm install --save web3 bootstrap".
-7. change browser: (path of web.min.js) in client\node_modules\web3\package.json to path to web3.min.js under client\dist\web3.min.js
-8. run "npm run start" in the client directory
+  }
+  </pre>
+</ul>
+<p><strong>Configure Client</strong></p>
+
+cd client
+npm init -f
+npm install --save-dev parcel
+npm install --save web3 bootstrap
+<p><strong>Update web3 Path</strong></p>
+<ul>
+  <li>Update <code>browser</code> in <code>client\node_modules\web3\package.json</code> to the path of <code>web3.min.js</code> under <code>client\dist\web3.min.js</code>.</li>
+</ul>
+<p><strong>Run Client</strong></p>
+
+
+npm run start
+<h3>MetaMask</h3>
+<p>Browser extension for Ethereum account management and user authentication.</p>
+<h3>Ganache</h3>
+<p>Local Ethereum blockchain for development and testing.</p>
+<h3>Truffle</h3>
+<p>Development framework for creating, testing, and deploying Ethereum smart contracts.</p>
+<h3>Coding Languages</h3>
+<ul>
+  <li>JavaScript (JS): Front-end scripting.</li>
+  <li>HTML: Structure of the user interface.</li>
+  <li>CSS: Styling for visual presentation.</li>
+  <li>Solidity: Smart contract development for Ethereum.</li>
+</ul>
+<h3>Parcel Bundler</h3>
+<p>Streamlines development environment setup by automating tasks like bundling and asset optimization.</p>
