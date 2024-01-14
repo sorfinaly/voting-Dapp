@@ -1,4 +1,4 @@
-<h3>Setting up Voting Dapp</h3>
+<h2>Setting up Voting Dapp</h2>
 
 <p><strong>Clone Repository</strong></p>
 
