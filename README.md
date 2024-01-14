@@ -51,7 +51,7 @@ npm install --save web3 bootstrap
 <ul>
   <li>Update <code>browser</code> in <code>client\node_modules\web3\package.json</code> to the path of <code>web3.min.js</code> under <code>client\dist\web3.min.js</code>.</li>
 </ul>
-<p><strong>Run Client</strong></p>
+<p><strong>Run Client</strong> - Ensure that the following command is run under <ode>client</ode> directory</p>
 
 ```bash
 npm run start
