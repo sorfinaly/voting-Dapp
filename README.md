@@ -14,7 +14,7 @@ git clone https://github.com/sorfinaly/voting-Dapp.git
 <ul>
   <li>Update <code>validVoters.json</code> in the <code>client</code> directory with the list of account from <code>Ganache</code> and connect those account into <code>Metamsk</code>.</li>
 </ul>
-<p><strong>Compile and Migrate Contracts in Voting-Dapp directory</strong></p>
+<p><strong>Compile and Migrate Contracts in parent directory</strong></p>
 
 ```bash
 truffle compile
