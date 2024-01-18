@@ -26,7 +26,7 @@ contract VotingSC {
         addCandidate("sorfina");
         addCandidate("Fadzlina");
         // Set the voting end time 
-        votingEndTime = block.timestamp + 50000000; 
+        votingEndTime = block.timestamp + 18000; 
     }
 
     modifier onlyBeforeVotingEnd() {

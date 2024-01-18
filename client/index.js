@@ -1,12 +1,21 @@
+// Import the Web3 library
 import Web3 from 'web3';
+
+// Import the contract configuration from the JSON file
 const configuration = require("../build/contracts/VotingSC.json");
+
+// Get the contract address and ABI from the configuration
 const CONTRACT_ADDRESS = configuration.networks['5777'].address;
 const CONTRACT_ABI = configuration.abi;
 
-const web3 = new Web3(Web3.givenProvider || 'HTTP://127.0.0.1:7545');   
+// Create a new instance of the Web3 library
+// Use the given provider (if available) or connect to a local Ganache node
+const web3 = new Web3(Web3.givenProvider || 'HTTP://127.0.0.1:7545');
 
+// Create a new contract instance using the contract's ABI and address
 const contract = new web3.eth.Contract(CONTRACT_ABI, CONTRACT_ADDRESS);
 
+// Declare a variable to store the current account
 let account;
 
 const accountElement = document.getElementById('account');
@@ -243,7 +252,6 @@ document.getElementById('endvote').addEventListener('click', async () => {
     }
 });
 
-// Define an asynchronous function to get and display the remaining time
 async function showRemainingTime() {
     try {
         // Convert Date.now() to BigInt
@@ -252,24 +260,33 @@ async function showRemainingTime() {
 
         // Call the contract function to get the original end time
         const originalEndTime = await contract.methods.votingEndTime().call();
-        console.log('Original End Time:', originalEndTime);
+        const originalEndTimeBigInt = BigInt(originalEndTime);
+        console.log('Original End Time:', originalEndTimeBigInt);
 
         // Calculate the remaining time based on the current block timestamp
-        const remainingTime = originalEndTime - currentTime;
+        const remainingTime = originalEndTimeBigInt - currentTime;
 
-        console.log('Remaining Time:', remainingTime.toString()); // Convert to string for display
+        // Convert remainingTime to hours, minutes, and seconds
+        const hours = String(Math.floor(Number(remainingTime) / 3600));
+        const minutes = String(Math.floor((Number(remainingTime) % 3600) / 60));
+        const seconds = String(Number(remainingTime) % 60);
+
+        console.log('Remaining Time:', `${hours} hours, ${minutes} minutes, ${seconds} seconds`);
 
         if (remainingTime <= 0) {
             // Voting time has ended
             alert('Voting time has ended!');
             document.getElementById('castVoteButton').disabled = true;
         } else {
-            alert(`Remaining Time: ${remainingTime.toString()} seconds`);
+            alert(`Remaining Time: ${hours} hours, ${minutes} minutes, ${seconds} seconds`);
         }
     } catch (error) {
         console.error('Error showing remaining time:', error);
     }
 }
+
+
+
 
 // Add an event listener to the "Show Remaining Time" button
 document.getElementById('showRemainingTime').addEventListener('click', showRemainingTime);

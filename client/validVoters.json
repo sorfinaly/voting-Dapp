@@ -1,15 +1,19 @@
 {
     "validVoters": [
       {
-        "accountNumber": "0xa881455C3901CEbd3C47dD32288c85714D476E11",
+        "accountNumber": "0x5492Fe36086D9449862BD20EdD5ECb127bD62887",
         "name": "Muhammad Bakar bin Abdul Hamid"
       },
       {
-        "accountNumber": "0x5c002DC70be6E58825339F673c3dB7362B69051e",
+        "accountNumber": "0x2292F73e082Eed7687c7CE83007a0EB89B909b87",
         "name": "Siti Nur Laila binti Mohd Zain"
       },
       {
-        "accountNumber": "0x48e7Ab5dbAdAfAdBdDe3488FBd83FB76434Ef8C5",
+        "accountNumber": "0xFE96512A9D115Cc4b05328b39667431A88644eBD",
+        "name": "Sarah binti Mohd Zikri"
+      },
+      {
+        "accountNumber": "0x8901664690abe8b6DEe350A1B46Ee63AB6a7e91B",
         "name": "Ahmad Firdaus bin Mohd Daud"
       }
     ]
